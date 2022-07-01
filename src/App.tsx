@@ -1,45 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import globalStore from "./stores/global";
 import { observer } from "mobx-react";
-function App() {
+import { HashRouter, Link } from "react-router-dom";
+import Router from "./router/router";
+import Jurisdiction from "./pages/jurisdiction";
+// import "antd/dist/antd.less";
+import "@/common/style.less";
+const App = () => {
   const { count, setCount, getTotalCount } = globalStore;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount(count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React{getTotalCount}
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <HashRouter>
+      <Jurisdiction />
+      <Router>
+        <Link to={"/foo"}>asddasd</Link>
+        <br></br>
+        <Link to={"/foo/details"}>sss</Link>
+      </Router>
+    </HashRouter>
   );
-}
+};
 
 export default observer(App);
